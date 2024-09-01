@@ -1,4 +1,4 @@
-# Laravel API Project
+# Laravel Client Management System Backend
 
 This Laravel project provides a set of API endpoints for managing admins, clients, and authentication. Below is a list of the available endpoints.
 
