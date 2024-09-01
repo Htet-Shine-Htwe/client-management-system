@@ -22,6 +22,7 @@ it('return bearer token when successful login',function(){
         'password' => bcrypt('password')
     ]);
 
+
     $response = $this->postJson(route('api.login'), [
         'code' => $user->code,
         'password' => 'password',

@@ -12,6 +12,7 @@ class ClientSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $this->call(WithoutModelEvents::class);
+        \App\Models\Client::factory(40)->create();
     }
 }

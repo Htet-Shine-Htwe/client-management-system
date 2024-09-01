@@ -17,7 +17,10 @@ class ClientFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'password' => $this->faker->password,
+            'user_id' => $this->faker->numberBetween(1, 10),
+            'client_code' => "Client_". $this->faker->unique()->randomNumber(6)
         ];
     }
 }

@@ -17,13 +17,7 @@ class User extends Authenticatable
     {
         parent::boot();
 
-        static::creating(function ($user) {
-            $user->password = bcrypt($user->password);
-        });
 
-        static::updating(function ($user) {
-            $user->password = bcrypt($user->password);
-        });
     }
 
     /**
@@ -68,6 +62,6 @@ class User extends Authenticatable
 
     public function getRoleNameAttribute()
     {
-        return $this->roles->first()->name;
+        return $this->roles->first()?->name;
     }
 }
