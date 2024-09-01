@@ -30,7 +30,7 @@ class ClientController extends Controller
     {
         $client = $this->clientAdminService->assignClient(
             Client::findOrFail($request->client_id),
-            User::findOrFail($request->user_id)
+            User::where('code', $request->code)->firstOrFail()
         );
         return response()->json([
             'message' => 'Client assigned successfully',

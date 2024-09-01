@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useGetDataQuery } from "@/redux/api/queryApi";
-import { toast } from "@/components/ui/use-toast";
 import useLogout from "./useLogout";
+import { toast } from "./use-toast";
 
 interface QueryErrorInterface {
     status: number;

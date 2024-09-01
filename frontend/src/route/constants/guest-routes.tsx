@@ -5,7 +5,7 @@ const Login = lazy(() => import('@/pages/auth/login.tsx'));
 
 const guestRoutes : AppRouteInterface[] = [
     {
-        path : '/admin/login',
+        path : '/auth/login',
         element : (
             <Login />
         )

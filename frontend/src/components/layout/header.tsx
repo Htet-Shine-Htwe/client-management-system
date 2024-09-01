@@ -1,10 +1,14 @@
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu"
 import { Button } from "../ui/button"
 import {
     CircleUser,
   } from "lucide-react"
+import useLogout from "@/hooks/useLogout";
 
 const Header = () => {
+
+  const logout = useLogout();
+
   return (
     <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
 
@@ -20,11 +24,11 @@ const Header = () => {
           <span className="sr-only">Toggle user menu</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuSeparator />
+      <DropdownMenuContent align="end" className="bg-muted px-4 py-3 rounded-lg hover:bg-muted-foreground cursor-pointer">
        
-        <DropdownMenuItem>Logout</DropdownMenuItem>
+        <DropdownMenuItem
+        onClick={()=>logout()}
+        >Logout</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   </header>

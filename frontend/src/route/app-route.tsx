@@ -1,4 +1,4 @@
-import { useRoutes } from "react-router-dom"
+import { useNavigate, useRoutes } from "react-router-dom"
 
 import { ThemeProvider } from "@/components/theme-provider"
 import useAuth from "@/hooks/useAuth.tsx";
@@ -11,24 +11,24 @@ import NotFoundError from "@/pages/errors/not-found";
 
 const AppRoute = () => {
 
-  const adminIsAuthenticated = useAuth({adminGuard: true});
+  const adminIsAuthenticated = useAuth();
+
+  const routes = adminIsAuthenticated ? adminAuthenticatedRoutes : guestRoutes;
 
   const commonRoutes = [
     {
       path: "*",
-      element: adminIsAuthenticated ? <NotFoundError /> : <NotFoundError />
+      element: adminIsAuthenticated ? <NotFoundError authenticated /> : <NotFoundError />
     }];
 
-//   const routes = adminIsAuthenticated ? adminAuthenticatedRoutes : guestRoutes;
-  const routes = adminAuthenticatedRoutes;
-
-  const routeCollection = useRoutes([...routes,...commonRoutes]);
+ 
+  const routeCollection = useRoutes([...routes, ...commonRoutes]);
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        
-        {routeCollection}
 
-        <Toaster />
+      {routeCollection}
+
+      <Toaster />
     </ThemeProvider>
   )
 }

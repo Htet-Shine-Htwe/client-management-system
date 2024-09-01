@@ -1,4 +1,5 @@
 
+import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
 interface GeneralErrorProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -19,6 +20,12 @@ export default function GeneralError({
         <p className='text-center text-muted-foreground'>
           We apologize for the inconvenience. <br /> Please try again later.
         </p>
+
+        <Button
+        onClick={() => window.location.reload()}
+        >
+           Try Reload Page
+        </Button>
         
       </div>
     </div>

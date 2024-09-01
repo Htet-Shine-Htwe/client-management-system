@@ -77,7 +77,7 @@ it("Super Admin can assign client to admin",function(){
 
         $response = $this->authenticated($super_admin)->postJson(route('api.client.assign'),[
             'client_id' => $client->id,
-            'user_id' => $admin->id
+            'code' => $admin->code
         ]);
 
         $response->assertStatus(200);

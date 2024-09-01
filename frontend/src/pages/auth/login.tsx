@@ -38,7 +38,7 @@ const Login = () => {
       const loginOnSuccess : useMutateCallbackType = (response : any) => {
         console.log(response);
         set("auth-token", response.token);
-        set("auth-type", "admin");
+        set("auth-type", response?.user?.role_name);
         localStorage.setItem("expiresAt", (new Date().getTime() + 24 * 60 * 60 * 1000).toString());
 
         dispatch(setAdmin(response.user));
@@ -48,12 +48,12 @@ const Login = () => {
           description: "You have been logged in successfully",
           variant: "success",
         });
-        navigate("/admin/dashboard");
+        navigate("/");
       }
 
       const [postLogin, { isLoading }] = useMutate({ callback: loginOnSuccess, navigateBack: false});
       const onSubmit =  async (data: loginSubmitForm) => {
-        const response =  await postLogin("admin/login", data) as any;
+        const response =  await postLogin("login", data) as any;
         console.log(response);
         if (response && response.error) {
           handleServerErrors(response.error,setError);
@@ -88,10 +88,11 @@ const Login = () => {
                             />
                             <InputError field={errors.password} />
                         </div>
-                        <Button className="w-full" type="submit" disabled={isLoading}>
+                        
+                    </div>
+                    <Button className="w-full mt-10" type="submit" disabled={isLoading}>
                             Login
                         </Button>
-                    </div>
                 </form>
                 </CardContent>
             </Card>

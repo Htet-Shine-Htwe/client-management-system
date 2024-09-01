@@ -1,21 +1,11 @@
 import useSecureStorage from "./useSecureStorage";
 
-type userAuthProps = {
-    adminGuard?: boolean,
-}
-
-const useAuth = ({adminGuard = true} : userAuthProps) : boolean => 
+const useAuth = () : boolean => 
 {   
     const { get } = useSecureStorage();
     const token = get('auth-token');
     const expiresAt = localStorage.getItem('expiresAt');
 
-    if (adminGuard) {
-        const authType = get('auth-type');
-        if (authType !== 'admin') {
-            return false;
-        }
-    }
 
     if (!token || !expiresAt) {
         return false;

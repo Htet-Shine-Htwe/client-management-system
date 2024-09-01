@@ -23,7 +23,7 @@ class AssignClientRequest extends FormRequest
     {
         return [
             'client_id' => ['required', 'integer', 'exists:clients,id'],
-            'user_id' => ['required', 'integer', 'exists:users,id'],
+            'code' => ['required', 'string', 'exists:users,code'],
         ];
     }
 }
